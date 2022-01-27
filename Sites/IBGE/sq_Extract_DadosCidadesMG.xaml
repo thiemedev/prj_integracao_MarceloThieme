@@ -1,0 +1,223 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="sq_Extract_DadosCidadesMG" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="arg_outStrCodigoMunicipio" Type="OutArgument(x:String)" />
+    <x:Property Name="arg_outStrGentilico" Type="OutArgument(x:String)" />
+    <x:Property Name="arg_outStrPrefeito" Type="OutArgument(x:String)" />
+    <x:Property Name="arg_outStrPopulacaoEstimada" Type="OutArgument(x:String)" />
+    <x:Property Name="arg_outStrPopulacaoUltimoCenso" Type="OutArgument(x:String)" />
+    <x:Property Name="arg_outStrDensidadeDemografica" Type="OutArgument(x:String)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>847.2,1950.4</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>sq_Extract_DadosCidadesMG_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="34">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="31">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Extrai as informações das cidades do site do IBGE." DisplayName="sq_Extract_DadosCidadesMG" sap:VirtualizedContainerService.HintSize="475.2,1885.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: https://cidades.ibge.gov.br" sap:VirtualizedContainerService.HintSize="433.6,1761.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="Never" ScopeGuid="4620f149-afce-4e08-945c-abca27a547ed" Version="V1" WindowResize="Maximize">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="375.2,1544.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NGetText DisplayName="Get Text 'Código do Município'" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="4620f149-afce-4e08-945c-abca27a547ed" Version="V1">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/brasil/mg/andrelandia/panorama" DesignTimeRectangle="340, 257, 270, 21" ElementType="Text" FriendlyName="'3102803'" FullSelectorArgument="&lt;webctrl parentid='dados' tag='P' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='dados' tag='P' type='' /&gt;" Guid="be93d442-e744-4b09-bc8f-4aeb53b7fc54" InformativeScreenshot="16f3a9c4bf0023c9d9630af1fc2e930e.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://cidades.ibge.gov.br/brasil/mg/andrelandia/panorama' /&gt;" SearchSteps="FuzzySelector">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="340, 236, 270, 21" FriendlyName="'Código do Município'" FullSelectorArgument="&lt;webctrl tag='H3' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='H3' type='' aaname='                 Código do Município             ' check:text='Código do Município' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NGetText.Target>
+              <uix:NGetText.Text>
+                <OutArgument x:TypeArguments="x:String">[arg_outStrCodigoMunicipio]</OutArgument>
+              </uix:NGetText.Text>
+            </uix:NGetText>
+            <uix:NGetText DisplayName="Get Text 'Gentílico'" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="4620f149-afce-4e08-945c-abca27a547ed" Version="V1">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/brasil/mg/andrelandia/panorama" DesignTimeRectangle="621, 257, 270, 21" ElementType="Text" FriendlyName="'careaçuense'" FullSelectorArgument="&lt;webctrl idx='2' parentid='dados' tag='P' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='dados' tag='P' /&gt;" Guid="f79c8065-8edd-4aaf-a430-bda58c63f625" ImageBase64="" InformativeScreenshot="3cd01f90d3acb0f95b7b37596f980b33.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://cidades.ibge.gov.br/brasil/mg/andrelandia/panorama' /&gt;" SearchSteps="FuzzySelector">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="621, 236, 270, 21" FriendlyName="'Gentílico'" FullSelectorArgument="&lt;webctrl idx='2' tag='H3' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' tag='H3' aaname='                 Gentílico             ' check:text='Gentílico' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAARIAAAAZCAYAAAD9h6FUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAQdSURBVHhe7dq9bhpZGAbgvQ/fAyXVVltRunKVymU6V4gIIhSTyELWKpayYmVjgYlG2EbKaGShmBALRNZICK/zg+JYxCtwgnwbb77DDHgOMyysh/Vu8RZPMWcOM1B8L+fvp5ubGxARBcEgIaLAGCREFBiDhIgCY5AQUWAMEiIKbGqQdN838HyrgMijHSxFbZGNA6TL5+gO/D+zOAN0Tiykji719sE50skdhJ4dodaT63emfC8Duc/O/eH1DlLvnGsiuhfeIBlcoZLPISQFGV4/QOKwBqvehPWmirQES1jax4U8+dmFaSEl73lg6kHSfmVgKWmiMno3g4Tof8ETJO39wrAYV/c/oD9xT+lLsUbkfuTluefe4vgHicdkkBDRf0IPkm4NazEZcWzV0HW3a77B2t7Fyosa2u7275ew9orjqVA4WUSqrIdRx5QRRVRGFJdNpH/dHY5ulmLyrEwVp6NRxucqHqj2sVFQXCK3IdcbVXRGz5xnRDLoomIcYCVuPy8UL2DNaOrTM/XdZ/Uhoqm0IOm+LnoLcR7XZ0g/kSJ8ZCBlNmQq1EAuawyDIpJtjcPEDpIcIkkZbWSrKLn6hX7/w+53fYFavYyH0ra8raZVZ+hcq8/fIUgGF8ht2uEw+b5I/sx+37hPDg8N9T7Xd9qsos0wIZpJC5JaXhWUAeOL3mmW9qFMh2IllL7q7f23JYSiBWQ+2td2kEhRv7rQ+lWy6r0yUhm3+U1t/nmQ9E/U+3cQfdtznmFT07dw0oT1l4RnWYXnLhJ1vU/3jf3ZxMk3rZ2IvLQg8Ra0wzPdUEYFLP/oz+R6w5J//Ka9MDtyZGJZ+o4CwQ6SAnId/fl2uysQFhQkw2CMye+ZOqq4QmlL+qwf69M0ZSCjrMdyL+OMlIhoKp8g8RmRfG0hk7eQdiQ2d10FbBe9HjK6kEwj1HO8gWH7d4KkC0NNWdz9PZxn+oaFz/uIyNed1kj0wneCJNvy9Jt0v0EyTxAwSIgWQQsStWujFjlDM4bzeuF/QmZdCs5vejDhfoPkb6Y2pxbC8QIyf84xtdlu6u1E5KEHiWhLUatFxtX9KSdYvzSQUDs0rgIeLrb6LFj26yZ+iUm7s9h530Hiv9jaQ2VbpmZOwMxabF07vtLaicjLEySq0GovC8MiCsUNRA21bdqEVT5G4rl94nUplkPUdJ0R6UnhJ1W4SPHvOVuo+SKW1ZkU1xbq/EFybo8GnpowFrL9e7u1m/nN/g2rlhNS3P4lCswnSGz9TksKSsLAOaSl/PykiOhhA+2Jbd6h3gcY0n90IC0Ul8Lca6Lz/bbP/EEio5zXJaw4z0qdqrY7BIkycSBNHZRL17u39xWfA2nRwzMeSCOa09QgISKaF4OEiAJjkBBRYAwSIgqMQUJEgTFIiCigG/wAZ2kmp6HdGTYAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NGetText.Target>
+              <uix:NGetText.Text>
+                <OutArgument x:TypeArguments="x:String">[arg_outStrGentilico]</OutArgument>
+              </uix:NGetText.Text>
+            </uix:NGetText>
+            <uix:NGetText DisplayName="Get Text 'Prefeito'" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NGetText_3" ScopeIdentifier="4620f149-afce-4e08-945c-abca27a547ed" Version="V1">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/brasil/mg/andrelandia/panorama" DesignTimeRectangle="340, 324, 551, 21" ElementType="Text" FriendlyName="'TOVAR DOS SANTOS BARROSO'" FullSelectorArgument="&lt;webctrl idx='3' parentid='dados' tag='P' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='dados' tag='P' /&gt;" Guid="a7e1571d-c22d-45e1-889c-47c0edd6f336" InformativeScreenshot="55dc8f8e1d419cc9cb14548a4feb4eae.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://cidades.ibge.gov.br/brasil/mg/andrelandia/panorama' /&gt;" SearchSteps="FuzzySelector">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="340, 303, 551, 21" FriendlyName="'Prefeito'" FullSelectorArgument="&lt;webctrl idx='3' tag='H3' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' tag='H3' aaname='                 Prefeito             ' check:text='Prefeito' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAisAAAAZCAYAAADwg26nAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAOESURBVHhe7dxBTxtHGMbxfo98Bx859cQpR045ceqRGycEiivUWKiycqAnpGK0YGlDWktdraIoBFIZQW0JGSESKyQylewklr/G01l7sXe7Q7xWizpJ/4ffgdn3nYETj2Zm95vBYCAAAABXEVYAAIDTCCsAAMBphBUAAOA0wgoAAHAaYQUAADgtHVZOA91b2baaW/e0VKmr0U3U/wtaL2p68DBeZ+NILUuNTTvwTY8v72081v9TjeAXbTbSdQAA4MtmDSvzjwOVd8OUlfKOCuZZYeNArX6i55/oN1UczhnKP24qbF6pZ6uzyISVt0daNHOVTtN1AADgy2YNK4vB+1TRjdbT6vB58feP1ucziwPGbevNhLACAMBXaaawMminw8VodyNQ7TTUg7Vt3VvbUfFVd1T76b3CvX3dj8ZNz9z6vkrPL8c7J6Pe+PgnNg4aU3on/fHOSub4KtDLm9rrC/mVz88FAADcNVtYaT7TvHn+XdgZ/nwTOAprVRMAmqoFR3rZMXUfzlX+wYSDNV+l4ETh8Ym8iq85U3u/cjYMCr32ucJngRbM2MLPdVPTVCNn72TtOKx0LsdzLT1pmp5LdaK67plK62au1aqKw7nq2tz0hsdZybkAAIC7coaVvnqvT1SM/vEn7onchJXlw3g3Jdb6tWoCQk2168lYpPeqZoJCVVuv4zHLMVDe3lRYiWosx0D1vZ1RTXsyFv0tjSfRcVbi9wAAAM6yhpXbeVp+cTWuzwSGoSt5G6b2x1C16NJsUrz7MQ4nmbCSv3d6WLlQ+Xsz19Yf2R2UTl1Lpnbh6Zv0OAAAcI41rGTfBnou7/BCrW4/1WwPK2cqmTmyQWeisHs+qs2Elfy908PKaC57IInXqZxZngEAAJfMdmflbz4bVvIEgdvCSo5ewgoAAP8PdxBW3mjrkQkCjw6mf+AtE1by904PK9OPgRZ/mxxpAQAAN91BWIkvya7sqHicvnjbOw40v5p4vTkTVvL3Tg8r0y7Yeto8T44DAAAX3UlYGb8yHM21F72WfCJvd18Lq9sqPD6afAHXElby9mbWvq5r2fTM/3SgGq8uAwDw1bibsBLpXqY+xlZ46Glpr6n2p0SNLazk7M2u3VXd9/WtCTXRuP8uHrd8FK58mP+z/gAA4L+VDisAAACOIawAAACnEVYAAIDTCCsAAMBphBUAAOA0wgoAAHDYQH8BFQaafcRrt94AAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NGetText.Target>
+              <uix:NGetText.Text>
+                <OutArgument x:TypeArguments="x:String">[arg_outStrPrefeito]</OutArgument>
+              </uix:NGetText.Text>
+            </uix:NGetText>
+            <uix:NGetText DisplayName="Get Text 'População estimada'" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NGetText_4" ScopeIdentifier="4620f149-afce-4e08-945c-abca27a547ed" Version="V1">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/brasil/mg/andrelandia/panorama" DesignTimeRectangle="728, 429, 176, 23" FriendlyName="'6.826 pessoas'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;app&amp;gt;shell&amp;gt;div&amp;gt;div&amp;gt;panorama-shell&amp;gt;div&amp;gt;section&amp;gt;panorama-resumo&amp;gt;div&amp;gt;table&amp;gt;tr&amp;gt;td&amp;gt;valor-indicador&amp;gt;div' parentid='dados' tag='DIV' tableCol='3' tableRow='2' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='dados' tag='DIV' /&gt;" Guid="8034f9b7-ac76-445d-a6e6-8ff9282c36b3" ImageBase64="" InformativeScreenshot="539f9f8c43463ccad1613a232f0f9ed8.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://cidades.ibge.gov.br/brasil/mg/andrelandia/panorama' /&gt;" SearchSteps="Selector">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="386, 422, 336, 35" FriendlyName="'População estimada'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableCol='2' tag='TD' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='TD' aaname='                                          População estimada                                                           ' check:text='População estimada&amp;#xD;&amp;#xA;                    [2021]' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAVQAAAAnCAYAAABQU7BuAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAUkSURBVHhe7ZptbtswDEBzvgI7TtGTZBfJOQbkFLmGZ32apChbaZRmXd+Ph7W2RFMS+RIXO12v1wUAAB4HoQIATAKhAgBM4nS73RYAAHgchAoAMAmECgAwCYQKADAJhAoAMAmECgAwCYQKADAJhAoAMAmECgAwCYQKADAJhAoAMIkxof45L2+n03Jy+Vgu3pync13Ov07L2++rc+/zXN7zut4v6++X5WP9+ePSjnsF199vIpfnrH+M9Oy0R979EdLeNjV0+cjXMr/Oy1XNC8i5K04eYa9UnL1cY33rOq51sPKaPYbvyF1C9cSSCu8VUn2CUERj1YZ0G/oF7JzB1zNPqOr8skzth4Y+AzuvjZPO7m05/9Fz/HyLnL0adnIE2OFhod5y0X19o7/yG9oL+AFCjR/ONqZZd5KlkV8UcbnWqYs4Rkq2XAsyRagwh2lCVUWXx9didb5hfFzSv2WMLlq/KWLD1VjOGPvclSbn3dxW7CunbcLAUQwXvV5vjnzNDNS12ZyidPT6o2jWmBf1qptyV6+/zXOzHOuclUaUZsz7Of0ux43svWJUVqVe0u+udM0Yl5ifOMu8p+H5rqQjozkCJB4Xqr0nCjWNyc1YG3kTS52TY9g5tpB3herk2Lz65dzkGBUz3tcCTZITzXa4Po+8ZiECG1evbcWup1mfXn+VZn3Gts/Ntfp7zl0KqnMWMreUu5g3svcNg7JSZ2LOvHIcqy/NvXuDOQJkHhRqbrZajE6DBtR829QJXdR+42jp6DFxvpWayTvOt7kJ3PtOQ++vr8VvWNmsnbiS5hnO+o8+DMq1sk8xppWeycX5kLmZMxzZ+5YRWeVcOme+cRTLr7mCfz6BkRwBNu4SavxWYlGN1CtA2aRpTNNoqrn9xtkTqiQ1yJZjetZ9zZFkVCh5jaxPXt+/JwW+5ew19sqQUPVcT3R6DwX2jGVezfj+mvy99zg+j3QGUua9M9+LlXPt7euKt3eJ+2oGYMLfUCWpANtxsgE7Yx4VqhFCjK/y7uUmyK/ziZyL+oY2sr7OvRrXIOeo569IkTVnoNf/OaGa3GIuei09AcfrJffDvffYl1Ur04Be80YvVllfX6YBhAqzeIpQe4Wdrnek5Lxa2zh7QnUb3xFqvzly81kpOkLdX5+8vt1r4h5R5Gqkte2bfuanhKrWVtD5ejHsmOO99+ifhy9Tca/ZS6+mco4HMg0gVJjFZKF25OGIzY7RjevFydfMmFTs8ucyvjRKeW4nt4rXlDfT3J0YB/vjCqeTs0TtyROE6t0vz6lrdKUrz3Bk7z18We3JNOCtM+Uor+VzGpBpwI0ZQahwH5OFupK/WW1FmIu7Nm5uRhnPiZ8aayvy0qBbHN3IdnwVw0rNJecmn7M1k81zG6/mHK7PQwooXdNNnGMoUZtmfoJQ2/3IeYRczT7LOGmvV3K+Q3vf0MoqraEv04TdyzZOk88B3t4l2tgAe8wXakA0lGy8RCnSc2qMTBtbNHdgjaEFoYXSjI+NaZtvxeamGimPl/fyeNVUu+vr4cRW923+KyZuFVncA73+Twm1jBHPDPFaIdmzsP8PdXDvFaUOyr7a/dGo/bdjd89X49UwQoVZjAl1Kv9CkQYBHH0TgufyHWSFUOE+fqhQA+lb1fC3bpgMQoX/jx8oVPl66r3mwdeQ6uBfPYf655WX1ip8N14gVACA/xOECgAwCYQKADAJhAoAMAmECgAwCYQKADAJhAoAMAmECgAwCYQKADAJhAoAMIXb8hf+J7k5TjpRAgAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NGetText.Target>
+              <uix:NGetText.Text>
+                <OutArgument x:TypeArguments="x:String">[arg_outStrPopulacaoEstimada]</OutArgument>
+              </uix:NGetText.Text>
+            </uix:NGetText>
+            <Assign DisplayName="Assign - Retira apenas o núm Popul Estimada" sap:VirtualizedContainerService.HintSize="333.6,61.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[arg_outStrPopulacaoEstimada]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[arg_outStrPopulacaoEstimada.Replace(vblf,"|").Replace(" ","").Split("|"c).First]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <uix:NGetText DisplayName="Get Text 'População no'" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NGetText_5" ScopeIdentifier="4620f149-afce-4e08-945c-abca27a547ed" Version="V1">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/brasil/mg/andrelandia/panorama" DesignTimeRectangle="728, 465, 176, 23" FriendlyName="'12.173 pessoas'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;app&amp;gt;shell&amp;gt;div&amp;gt;div&amp;gt;panorama-shell&amp;gt;div&amp;gt;section&amp;gt;panorama-resumo&amp;gt;div&amp;gt;table&amp;gt;tr&amp;gt;td&amp;gt;valor-indicador&amp;gt;div' parentid='dados' tableRow='4' tag='DIV' tableCol='3' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='dados' tag='DIV' /&gt;" Guid="f6013202-1159-4da7-b273-2cc8a3e8fd40" ImageBase64="" InformativeScreenshot="b7df0afeaaf1c39d123b9cd27bf7bb4f.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://cidades.ibge.gov.br/brasil/mg/andrelandia/panorama' /&gt;" SearchSteps="Selector">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="386, 459, 336, 35" FriendlyName="'População no'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableCol='2' tableRow='4' tag='TD' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' aaname='                                          População no último censo                                                           ' tag='TD' check:text='População no último censo&amp;#xD;&amp;#xA;                    [2010]' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NGetText.Target>
+              <uix:NGetText.Text>
+                <OutArgument x:TypeArguments="x:String">[arg_outStrPopulacaoUltimoCenso]</OutArgument>
+              </uix:NGetText.Text>
+            </uix:NGetText>
+            <Assign DisplayName="Assign - Retira apenas o núm Popul Censo" sap:VirtualizedContainerService.HintSize="333.6,61.6" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[arg_outStrPopulacaoUltimoCenso]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[arg_outStrPopulacaoUltimoCenso.Replace(vblf,"|").Replace(" ","").Split("|"c).First]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <uix:NGetText DisplayName="Get Text 'Densidade demográfica'" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NGetText_6" ScopeIdentifier="4620f149-afce-4e08-945c-abca27a547ed" Version="V1">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/brasil/mg/andrelandia/panorama" DesignTimeRectangle="728, 502, 176, 23" FriendlyName="'12,11 hab/km²'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;app&amp;gt;shell&amp;gt;div&amp;gt;div&amp;gt;panorama-shell&amp;gt;div&amp;gt;section&amp;gt;panorama-resumo&amp;gt;div&amp;gt;table&amp;gt;tr&amp;gt;td&amp;gt;valor-indicador&amp;gt;div' parentid='dados' tableRow='6' tag='DIV' tableCol='3' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='dados' tag='DIV' /&gt;" Guid="0fe3fdcc-19f9-4ab0-9f47-f1660750eb03" ImageBase64="" InformativeScreenshot="a86e2b38a9cadc44b2d0c6b7f1374af4.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://cidades.ibge.gov.br/brasil/mg/andrelandia/panorama' /&gt;" SearchSteps="Selector">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="386, 496, 336, 35" FriendlyName="'Densidade demográfica'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableCol='2' tableRow='6' tag='TD' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' aaname='                                          Densidade demográfica                                                           ' tag='TD' check:text='Densidade demográfica&amp;#xD;&amp;#xA;                    [2010]' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NGetText.Target>
+              <uix:NGetText.Text>
+                <OutArgument x:TypeArguments="x:String">[arg_outStrDensidadeDemografica]</OutArgument>
+              </uix:NGetText.Text>
+            </uix:NGetText>
+            <Assign DisplayName="Assign - Retira apenas o núm da Densidade" sap:VirtualizedContainerService.HintSize="333.6,61.6" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[arg_outStrDensidadeDemografica]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[arg_outStrDensidadeDemografica.Replace(vblf,"|").Replace(" ","").Split("|"c).First]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-9, -9, 1938, 1048" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="842467a7ef1fb5d53e93815cec1814b6.png" Selector="&lt;html app='chrome.exe' title='https://cidades.ibge.gov.br*' /&gt;" Url="[in_Config(&quot;URL_IBGE&quot;).ToString]" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>

@@ -2,11 +2,13 @@
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_TransactionNumber" Type="InArgument(x:Int32)" />
+    <x:Property Name="arg_inDbConexao" Type="InArgument(ui:DatabaseConnection)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1095,585</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>847.2,1126.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="50">
@@ -36,6 +38,8 @@
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>System.Runtime.InteropServices</x:String>
       <x:String>System.Windows.Forms</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Database</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -66,17 +70,76 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="376,380" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="420,1061.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="var_strCodigoCidade" />
+      <Variable x:TypeArguments="x:String" Name="var_strGentilico" />
+      <Variable x:TypeArguments="x:String" Name="var_strPrefeito" />
+      <Variable x:TypeArguments="x:String" Name="var_strPopulacaoEstimada" />
+      <Variable x:TypeArguments="x:String" Name="var_strPopulacaoUltimoCenso" />
+      <Variable x:TypeArguments="x:String" Name="var_strDensidadeDemografica" />
+      <Variable x:TypeArguments="x:String" Name="var_strCodigoQuantidadePopulacao" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
-    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  Invoke steps of the process" />
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="378.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke sq_Seach_DadosCidadeMG workflow" sap:VirtualizedContainerService.HintSize="378.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Sites\IBGE\sq_Seach_DadosCidadeMG.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke sq_Extract_DadosCidadesMG workflow" sap:VirtualizedContainerService.HintSize="378.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Sites\IBGE\sq_Extract_DadosCidadesMG.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="x:String" x:Key="arg_outStrCodigoMunicipio">[var_strCodigoCidade]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="arg_outStrGentilico">[var_strGentilico]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="arg_outStrPrefeito">[var_strPrefeito]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="arg_outStrPopulacaoEstimada">[var_strPopulacaoEstimada]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="arg_outStrPopulacaoUltimoCenso">[var_strPopulacaoUltimoCenso]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="arg_outStrDensidadeDemografica">[var_strDensidadeDemografica]</OutArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke sq_Compare_QuantidadePopulacaoCidade workflow" sap:VirtualizedContainerService.HintSize="378.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Sites\IBGE\sq_Compare_QuantidadePopulacaoCidade.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrPopulacaoEstimada">[var_strPopulacaoEstimada]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="arg_outStrCodigoQuantidadePopulacao">[var_strCodigoQuantidadePopulacao]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke sq_Save_XlsxDadosCidadesMG workflow" sap:VirtualizedContainerService.HintSize="378.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Sites\IBGE\sq_Save_XlsxDadosCidadesMG.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrCEP">[in_TransactionItem.SpecificContent("CEP").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrCodigoMunicipio">[var_strCodigoCidade]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrGentilico">[var_strGentilico]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrPrefeito">[var_strPrefeito]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrPopulacaoEstimada">[var_strPopulacaoEstimada]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrPopulacaoUltimoCenso">[var_strPopulacaoUltimoCenso]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrDensidadeDemografica">[var_strDensidadeDemografica]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_TransactionNumber">[in_TransactionNumber]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrCodigoQuantidadePopulacao">[var_strCodigoQuantidadePopulacao]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrNomeCidade">[in_TransactionItem.SpecificContent("NOME").ToString]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke sq_Insert_DbSqlServer workflow" sap:VirtualizedContainerService.HintSize="378.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="SQL\sq_Insert_DbSqlServer.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="arg_inDbConexao">[arg_inDbConexao]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrNomeCidade">[in_TransactionItem.SpecificContent("NOME").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrCEP">[in_TransactionItem.SpecificContent("CEP").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrCodigoMunicipio">[var_strCodigoCidade]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrGentilico">[var_strGentilico]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrPrefeito">[var_strPrefeito]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="arg_inStrCodigoQuantidadePopulacao">[var_strCodigoQuantidadePopulacao]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
   </Sequence>
 </Activity>
