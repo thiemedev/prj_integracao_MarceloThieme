@@ -1,7 +1,7 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="sq_Compare_QuantidadePopulacaoCidade" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="arg_inStrPopulacaoEstimada" Type="InArgument(x:String)" />
-    <x:Property Name="arg_outStrCodigoQuantidadePopulacao" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com a informação do número da população estimada para a cidade corrente." Name="arg_inStrPopulacaoEstimada" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Saída com o código da classificação da cidade, conforme o número da população." Name="arg_outStrCodigoQuantidadePopulacao" Type="OutArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -65,7 +65,7 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Compara a quantidade da população da cidade e atribui um código de classificação, conforme o número de pessoas." DisplayName="sq_Compare_QuantidadePopulacaoCidade" sap:VirtualizedContainerService.HintSize="492,764.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Compara a quantidade da população da cidade e atribui o código de classificação 1, 2 ou 3, conforme o número de pessoas." DisplayName="sq_Compare_QuantidadePopulacaoCidade" sap:VirtualizedContainerService.HintSize="492,764.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="var_intPopulacaoEstimada" />
     </Sequence.Variables>

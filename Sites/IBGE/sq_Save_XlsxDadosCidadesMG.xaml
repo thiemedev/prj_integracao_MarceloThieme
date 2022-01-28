@@ -1,21 +1,21 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="sq_Save_XLSX_DadosCidadesMG" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="arg_inStrCEP" Type="InArgument(x:String)" />
-    <x:Property Name="arg_inStrCodigoMunicipio" Type="InArgument(x:String)" />
-    <x:Property Name="arg_inStrGentilico" Type="InArgument(x:String)" />
-    <x:Property Name="arg_inStrPrefeito" Type="InArgument(x:String)" />
-    <x:Property Name="arg_inStrPopulacaoEstimada" Type="InArgument(x:String)" />
-    <x:Property Name="arg_inStrPopulacaoUltimoCenso" Type="InArgument(x:String)" />
-    <x:Property Name="arg_inStrDensidadeDemografica" Type="InArgument(x:String)" />
-    <x:Property Name="in_TransactionNumber" Type="InArgument(x:Int32)" />
-    <x:Property Name="arg_inStrCodigoQuantidadePopulacao" Type="InArgument(x:String)" />
-    <x:Property Name="arg_inStrNomeCidade" Type="InArgument(x:String)" />
-    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com o número do CEP, extraído do site dos Correios." Name="arg_inStrCEP" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com o código da cidade, extraído do site cidades do IBGE." Name="arg_inStrCodigoMunicipio" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com a informação de gentílico, extraído do site cidades do IBGE." Name="arg_inStrGentilico" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com o nome do prefeito, extraído do site cidades do IBGE." Name="arg_inStrPrefeito" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com o número da população estimada, extraído do site cidades do IBGE." Name="arg_inStrPopulacaoEstimada" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com o número da população do último censo, extraído do site cidades do IBGE." Name="arg_inStrPopulacaoUltimoCenso" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com o número da densidade demográfica, extraído do site cidades do IBGE." Name="arg_inStrDensidadeDemografica" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com o número da transação atual que está sendo processada." Name="in_TransactionNumber" Type="InArgument(x:Int32)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com o código de classificação da cidade, conforme o número de população da cidade." Name="arg_inStrCodigoQuantidadePopulacao" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com o nome da cidade, extraído do site dos Correios." Name="arg_inStrNomeCidade" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>847.2,974.4</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>847.2,925.6</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>sq_Save_XLSX_DadosCidadesMG_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="48">
@@ -79,7 +79,7 @@
       <AssemblyReference>System.Memory</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Workflow para salvar os dados extraídos do site do IBGE, onde é criado uma Data Table, limpa as posições da mesma e adiciona a linha com os devidos dados, em seguida salva estas informações no arquivo &quot;Cidades.xlsx&quot;." DisplayName="sq_Save_XlsxDadosCidadesMG" sap:VirtualizedContainerService.HintSize="752.8,860.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Salva os dados extraídos do site do IBGE, onde é criado uma Data Table com os campos padronizados, limpa as posições da mesma e adiciona a linha com os devidos dados, em seguida salva estas informações no arquivo &quot;Cidades.xlsx&quot;." DisplayName="sq_Save_XlsxDadosCidadesMG" sap:VirtualizedContainerService.HintSize="752.8,860.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="var_dtCidadesMG" />
     </Sequence.Variables>

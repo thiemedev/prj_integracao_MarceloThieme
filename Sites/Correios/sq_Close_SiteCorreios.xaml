@@ -48,7 +48,7 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Fecha/Encerra o site dos Correios caso haja uma exeção ou quando a extração dos dados terminar." DisplayName="sq_Close_SiteCorreios" sap:VirtualizedContainerService.HintSize="475.2,306.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Fecha/Encerra o site dos Correios caso haja uma exceção ou quando a extração dos dados terminar." DisplayName="sq_Close_SiteCorreios" sap:VirtualizedContainerService.HintSize="475.2,306.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>

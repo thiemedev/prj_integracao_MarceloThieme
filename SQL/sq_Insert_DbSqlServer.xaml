@@ -1,12 +1,12 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="sq_Insert_DbSqlServer" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="arg_inDbConexao" Type="InArgument(ui:DatabaseConnection)" />
-    <x:Property Name="arg_inStrNomeCidade" Type="InArgument(x:String)" />
-    <x:Property Name="arg_inStrCEP" Type="InArgument(x:String)" />
-    <x:Property Name="arg_inStrCodigoMunicipio" Type="InArgument(x:String)" />
-    <x:Property Name="arg_inStrGentilico" Type="InArgument(x:String)" />
-    <x:Property Name="arg_inStrPrefeito" Type="InArgument(x:String)" />
-    <x:Property Name="arg_inStrCodigoQuantidadePopulacao" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com a string de conexão com o Banco de Dados." Name="arg_inDbConexao" Type="InArgument(ui:DatabaseConnection)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com o nome da cidade, extraído do site dos Correios." Name="arg_inStrNomeCidade" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com o número do CEP, extraído do site dos Correios." Name="arg_inStrCEP" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com o código da cidade, extraído do site cidades do IBGE." Name="arg_inStrCodigoMunicipio" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com a informação do gentílico, extraído do site cidades do IBGE." Name="arg_inStrGentilico" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com o nome do prefeito, extraído do site cidades do IBGE." Name="arg_inStrPrefeito" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Entrada com o código de classificação da cidade, conforme o número de população da cidade." Name="arg_inStrCodigoQuantidadePopulacao" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
